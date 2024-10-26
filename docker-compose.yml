@@ -1,0 +1,44 @@
+services:
+  database:
+    image: mysql
+    container_name: my-webapp-mysql
+    environment:
+      MYSQL_DATABASE: "mysql_db"
+      MYSQL_ROOT_PASSWORD: "secret_pass"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 3s
+      timeout: 2s
+      retries: 5
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: unless-stopped
+
+  webapp:
+    image: tincirci/webapp
+    container_name: my-webapp
+    depends_on:
+      database:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    environment:
+      MYSQL_URL: mysql://root:secret_pass@database/mysql_db
+    restart: unless-stopped
+
+  test:
+    image: tincirci/webapp
+    container_name: my-webapp-test
+    profiles: [ test ]
+    depends_on:
+      database:
+        condition: service_healthy
+      webapp:
+        condition: service_started
+    environment:
+      API_URL: http://webapp:3000
+    command: yarn test
+
+
+volumes:
+  mysql-data:

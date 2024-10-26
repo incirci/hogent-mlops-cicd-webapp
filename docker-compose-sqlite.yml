@@ -1,0 +1,17 @@
+services:
+  webapp:
+    container_name: my-webapp
+
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    
+    image: webapp
+
+    ports:
+      - "3000:3000"
+
+    volumes:
+      - ./database:/app/database
+
+    restart: unless-stopped
