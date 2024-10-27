@@ -6,8 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      ESLINT_USE_FLAT_CONFIG: false
+    # env:
+    #   ESLINT_USE_FLAT_CONFIG: false
     steps: 
         - name: Check out repository code
           uses: actions/checkout@v3
@@ -16,7 +16,7 @@ jobs:
           uses: actions/setup-node@v4.1.0
           with:
             node-version: 20
-            
+
         - name: Convert to flat config
           run: npx @eslint/migrate-config .eslintrc.json
 
