@@ -10,7 +10,7 @@ jobs:
       ESLINT_USE_FLAT_CONFIG: false
     steps: 
         - name: Check out repository code
-          uses: actions/checkout@v4
+          uses: actions/checkout@v3
           
         - name: Setup Node.js environment
           uses: actions/setup-node@v4.1.0
@@ -24,15 +24,13 @@ jobs:
           run: yarn lint
           
         - name: Docker Login
-            # You may pin to the exact commit or the version.
-            # uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567
           uses: docker/login-action@v3.3.0
           with:
             username: ${{ secrets.DOCKERHUB_USERNAME }}
             password: ${{ secrets.DOCKERHUB_PASSWORD }}
             logout: true
           
-        - name: Build the Docker image
+        - name: Build and push the Docker image
           run: | 
             docker build . -t tincirci/webapp
             docker push tincirci/webapp
