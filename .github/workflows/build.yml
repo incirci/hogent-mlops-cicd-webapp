@@ -6,8 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # env:
-    #   ESLINT_USE_FLAT_CONFIG: false
+    env:
+      ESLINT_USE_FLAT_CONFIG: false
     steps: 
         - name: Check out repository code
           uses: actions/checkout@v4
@@ -17,8 +17,8 @@ jobs:
             node-version: 20
         - name: Install yarn
           run: yarn install --frozen-lockfile      
-        - name: Migrate eslint conf file
-          run: npx @eslint/migrate-config .eslintrc.json
+        # - name: Migrate eslint conf file
+        #   run: npx @eslint/migrate-config .eslintrc.json
         - name: Lint with yarn
           run: yarn lint          
           
