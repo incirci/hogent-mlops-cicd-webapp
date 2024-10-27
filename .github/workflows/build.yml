@@ -18,8 +18,8 @@ jobs:
             node-version: 20
         - name: Install yarn
           run: yarn install --frozen-lockfile      
-        # - name: Set Yarn version
-        #   run: yarn set version 1.22.22   
+        - name: Set Yarn version
+          run: yarn set version 1.22.22   
         - name: Lint with yarn
           run: yarn lint          
           
