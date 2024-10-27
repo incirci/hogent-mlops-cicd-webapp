@@ -16,6 +16,7 @@ jobs:
           uses: actions/setup-node@v4.1.0
           with:
             node-version: 20
+            
         - name: Convert to flat config
           run: npx @eslint/migrate-config .eslintrc.json
 
