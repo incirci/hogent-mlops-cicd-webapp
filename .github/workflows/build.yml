@@ -19,6 +19,9 @@ jobs:
             
         - name: Install yarn
           run: yarn install --frozen-lockfile      
+        
+        - name: Convert to flat config
+          run: npx @eslint/migrate-config .eslintrc.json
           
         - name: Lint with yarn
           run: yarn lint
