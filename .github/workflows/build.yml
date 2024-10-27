@@ -16,7 +16,9 @@ jobs:
           with:
             node-version: 20
         - name: Install yarn
-          run: yarn install --frozen-lockfile       
+          run: yarn install --frozen-lockfile      
+        - name: Migrate eslint conf file
+          run: npx @eslint/migrate-config .eslintrc.json
         - name: Lint with yarn
           run: yarn lint          
           
