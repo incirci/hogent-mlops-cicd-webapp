@@ -6,8 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      ESLINT_USE_FLAT_CONFIG: false
+    # env:
+      # ESLINT_USE_FLAT_CONFIG: false
     steps: 
         - name: Check out repository code
           uses: actions/checkout@v3
@@ -17,7 +17,9 @@ jobs:
             # Set always-auth in npmrc.
             node-version: 20
         - name: Install yarn
-          run: yarn install --frozen-lockfile
+          run: yarn install --frozen-lockfile      
+        - name: Set Yarn version
+          run: yarn set version 1.22.22   
         - name: Lint with yarn
           run: yarn lint          
           
