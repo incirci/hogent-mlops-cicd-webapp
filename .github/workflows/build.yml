@@ -16,12 +16,11 @@ jobs:
           uses: actions/setup-node@v4.1.0
           with:
             node-version: 20
-            
-        - name: Install yarn
-          run: yarn install --frozen-lockfile      
-        
         - name: Convert to flat config
           run: npx @eslint/migrate-config .eslintrc.json
+
+        - name: Install yarn
+          run: yarn install --frozen-lockfile      
           
         - name: Lint with yarn
           run: yarn lint
