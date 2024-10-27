@@ -15,7 +15,7 @@ jobs:
             # Set always-auth in npmrc.
             node-version: 20
         - name: Install yarn
-          run: yarn install
+          run: yarn install --frozen-lockfile
         - name: Lint with yarn
           run: yarn lint          
           
